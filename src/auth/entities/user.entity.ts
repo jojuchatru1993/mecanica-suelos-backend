@@ -48,8 +48,8 @@ export class User {
     @BeforeUpdate()
     sanitizeFields() {
         this.email = this.email.toLowerCase().trim();
-        this.firstName = this.firstName.toLocaleUpperCase();
-        this.lastName = this.lastName.toLocaleUpperCase();
+        this.firstName = this.firstName.toLocaleUpperCase().trim();
+        this.lastName = this.lastName.toLocaleUpperCase().trim();
     }
 
     @BeforeInsert()
