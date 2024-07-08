@@ -1,5 +1,5 @@
 import { UseGuards, applyDecorators } from '@nestjs/common';
-import { ValidRoles } from '../interfaces/validRoles';
+import { ValidRoles } from '../interfaces/valid-roles';
 import { RoleProtected } from './role-protected.decorator';
 import { UserRoleGuard } from '../guards/user-role/user-role.guard';
 import { AuthGuard } from '@nestjs/passport';
