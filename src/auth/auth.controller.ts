@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { Auth } from './decorators/auth.decorator';
-import { ValidRoles } from './interfaces/validRoles';
+import { ValidRoles } from './interfaces/valid-roles';
 import { GetUser } from './decorators/get-user.decorator';
 import { User } from './entities/user.entity';
 
