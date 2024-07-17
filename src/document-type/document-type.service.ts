@@ -1,4 +1,10 @@
-import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateDocumentTypeDto } from './dto/create-document-type.dto';
 import { UpdateDocumentTypeDto } from './dto/update-document-type.dto';
 import { Repository } from 'typeorm';
@@ -19,12 +25,16 @@ export class DocumentTypeService {
 
     private readonly paginationService: PaginationService<DocumentType>,
 
-    private readonly dbExceptionsService: DbExceptionsService
+    private readonly dbExceptionsService: DbExceptionsService,
   ) {}
 
-  async create(createDocumentTypeDto: CreateDocumentTypeDto): Promise<DocumentType> {
+  async create(
+    createDocumentTypeDto: CreateDocumentTypeDto,
+  ): Promise<DocumentType> {
     try {
-      const documentType = this.documentTypeRepository.create(createDocumentTypeDto);
+      const documentType = this.documentTypeRepository.create(
+        createDocumentTypeDto,
+      );
       await this.documentTypeRepository.save(documentType);
 
       return documentType;
@@ -33,20 +43,22 @@ export class DocumentTypeService {
     }
   }
 
-  findAll(paginatorDto: PaginatorDocumentTypeDto): Promise<PaginationResult<DocumentType>> {
+  findAll(
+    paginatorDto: PaginatorDocumentTypeDto,
+  ): Promise<PaginationResult<DocumentType>> {
     return this.paginationService.paginate(
       this.documentTypeRepository,
-      paginatorDto
+      paginatorDto,
     );
   }
 
   async findOne(id: string): Promise<DocumentType> {
     const documentType = await this.documentTypeRepository.findOneBy({ id });
-    
+
     if (!documentType) {
       throw new NotFoundException(`DocumentType with ID ${id} not found.`);
     }
-    
+
     return documentType;
   }
 
@@ -55,11 +67,12 @@ export class DocumentTypeService {
     updateDocumentTypeDto: UpdateDocumentTypeDto,
   ): Promise<DocumentType> {
     const documentType = await this.findOne(id);
-  
+
     Object.assign(documentType, updateDocumentTypeDto);
-  
+
     try {
-      const savedDocumentType = await this.documentTypeRepository.save(documentType);
+      const savedDocumentType =
+        await this.documentTypeRepository.save(documentType);
 
       return savedDocumentType;
     } catch (error) {
@@ -69,7 +82,7 @@ export class DocumentTypeService {
 
   async remove(id: string): Promise<void> {
     const documentType = await this.findOne(id);
-  
+
     try {
       await this.documentTypeRepository.softRemove(documentType);
     } catch (error) {

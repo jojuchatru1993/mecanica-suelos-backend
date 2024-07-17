@@ -6,6 +6,7 @@ import { DocumentTypeModule } from './document-type/document-type.module';
 import { CommonModule } from './common/common.module';
 import { ClientModule } from './client/client.module';
 import { ProyectModule } from './proyect/proyect.module';
+import { ResistanceTypeModule } from './resistance-type/resistance-type.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ProyectModule } from './proyect/proyect.module';
     DocumentTypeModule,
     ClientModule,
     ProyectModule,
+    ResistanceTypeModule,
   ],
   controllers: [],
   providers: [],
