@@ -6,7 +6,7 @@ import { Client } from './entities/client.entity';
 import { AuthModule } from '../auth/auth.module';
 import { CommonModule } from '../common/common.module';
 import { DocumentType } from '../document-type/entities/document-type.entity';
-import { DocumentTypeService } from 'src/document-type/document-type.service';
+import { DocumentTypeService } from '../document-type/document-type.service';
 
 @Module({
   imports: [

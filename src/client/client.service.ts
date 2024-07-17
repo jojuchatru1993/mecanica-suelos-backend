@@ -13,8 +13,8 @@ import { Repository } from 'typeorm';
 import { PaginationService } from '../common/services/pagination.service';
 import { DbExceptionsService } from '../common/services/db-exceptions.service';
 import { DocumentType } from '../document-type/entities/document-type.entity';
-import { DocumentTypeService } from 'src/document-type/document-type.service';
-import { PaginationResult } from 'src/common/interfaces/pagination-result.interface';
+import { DocumentTypeService } from '../document-type/document-type.service';
+import { PaginationResult } from '../common/interfaces/pagination-result.interface';
 
 @Injectable()
 export class ClientService {
