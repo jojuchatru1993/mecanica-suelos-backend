@@ -4,7 +4,7 @@ import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { ValidRoles } from '../auth/interfaces/valid-roles';
-import { PaginatorClientTypeDto } from './dto/paginator-client.dto';
+import { PaginatorClientDto } from './dto/paginator-client.dto';
 import { PaginationResult } from '../common/interfaces/pagination-result.interface';
 import { Client } from './entities/client.entity';
 
@@ -20,7 +20,7 @@ export class ClientController {
 
   @Get()
   @Auth(ValidRoles.admin)
-  findAll(@Query() paginatorDto: PaginatorClientTypeDto): Promise<PaginationResult<Client>> {
+  findAll(@Query() paginatorDto: PaginatorClientDto): Promise<PaginationResult<Client>> {
     return this.clientService.findAll(paginatorDto);
   }
 
