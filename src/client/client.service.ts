@@ -15,6 +15,7 @@ import { DbExceptionsService } from '../common/services/db-exceptions.service';
 import { DocumentType } from '../document-type/entities/document-type.entity';
 import { DocumentTypeService } from '../document-type/document-type.service';
 import { PaginationResult } from '../common/interfaces/pagination-result.interface';
+import { PaginatorClientDto } from './dto/paginator-client.dto';
 
 @Injectable()
 export class ClientService {
@@ -50,26 +51,8 @@ export class ClientService {
     }
   }
 
-  findAll(options: {
-    page: number;
-    limit: number;
-    search?: string;
-    orderBy?: string;
-    orderDirection?: 'ASC' | 'DESC';
-  }): Promise<PaginationResult<Client>> {
-    return this.paginationService.paginate(this.clientRepository, {
-      ...options,
-      searchFields: [
-        { field: 'firstName', type: 'string' },
-        { field: 'lastName', type: 'string' },
-        { field: 'businessName', type: 'string' },
-        { field: 'documentType', type: 'string' },
-        { field: 'documentNumber', type: 'string' },
-        { field: 'email', type: 'string' },
-        { field: 'phone', type: 'string' },
-        { field: 'id', type: 'string' },
-      ],
-    });
+  findAll(paginatorDto: PaginatorClientDto): Promise<PaginationResult<Client>> {
+    return this.paginationService.paginate(this.clientRepository, paginatorDto);
   }
 
   async findOne(id: string): Promise<Client> {
@@ -88,7 +71,8 @@ export class ClientService {
     const { documentTypeId, ...clientData } = updateClientDto;
 
     if (documentTypeId) {
-      const documentType = await this.documentTypeService.findOne(documentTypeId);
+      const documentType =
+        await this.documentTypeService.findOne(documentTypeId);
 
       client.documentType = documentType;
     }

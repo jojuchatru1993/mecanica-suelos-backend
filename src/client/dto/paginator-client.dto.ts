@@ -13,7 +13,7 @@ class IsOrderByValidConstraint implements ValidatorConstraintInterface {
   }
 }
 
-export class PaginatorClientTypeDto {
+export class PaginatorClientDto {
   @IsInt()
   @Min(1)
   page: number = 1;

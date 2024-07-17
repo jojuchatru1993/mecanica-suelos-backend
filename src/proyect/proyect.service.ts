@@ -7,6 +7,8 @@ import { Repository } from 'typeorm';
 import { PaginationService } from '../common/services/pagination.service';
 import { DbExceptionsService } from '../common/services/db-exceptions.service';
 import { ClientService } from '../client/client.service';
+import { PaginatorProyectDto } from './dto/paginator-proyect.dto';
+import { PaginationResult } from '../common/interfaces/pagination-result.interface';
 
 @Injectable()
 export class ProyectService {
@@ -42,19 +44,13 @@ export class ProyectService {
     }
   }
 
-  findAll(options: {
-    page: number;
-    limit: number;
-    search?: string;
-    orderBy?: string;
-    orderDirection?: 'ASC' | 'DESC';
-  }) {
-    return this.paginationService.paginate(this.proyectRepository, {
-      ...options,
-      searchFields: [
-        { field: 'name', type: 'string' },
-      ],
-    });
+  findAll(
+    paginatorDto: PaginatorProyectDto,
+  ): Promise<PaginationResult<Proyect>> {
+    return this.paginationService.paginate(
+      this.proyectRepository,
+      paginatorDto,
+    );
   }
 
   async findOne(id: string): Promise<Proyect> {
@@ -64,10 +60,13 @@ export class ProyectService {
       throw new NotFoundException(`Proyect with id ${id} not found`);
     }
 
-    return proyect
+    return proyect;
   }
 
-  async update(id: string, updateProyectDto: UpdateProyectDto): Promise<Proyect> {
+  async update(
+    id: string,
+    updateProyectDto: UpdateProyectDto,
+  ): Promise<Proyect> {
     const proyect = await this.findOne(id);
 
     const { clientId, ...proyectData } = updateProyectDto;

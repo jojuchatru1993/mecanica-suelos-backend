@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationService } from '../common/services/pagination.service';
 import { PaginationResult } from '../common/interfaces/pagination-result.interface';
 import { DbExceptionsService } from '../common/services/db-exceptions.service';
+import { PaginatorDocumentTypeDto } from './dto/paginator-document-type.dto';
 
 @Injectable()
 export class DocumentTypeService {
@@ -32,22 +33,10 @@ export class DocumentTypeService {
     }
   }
 
-  findAll(options: {
-    page: number;
-    limit: number;
-    search?: string;
-    orderBy?: string;
-    orderDirection?: 'ASC' | 'DESC';
-  }): Promise<PaginationResult<DocumentType>> {
+  findAll(paginatorDto: PaginatorDocumentTypeDto): Promise<PaginationResult<DocumentType>> {
     return this.paginationService.paginate(
       this.documentTypeRepository,
-      {
-        ...options,
-        searchFields: [
-          { field: 'documentType', type: 'string' },
-          { field: 'id', type: 'string' },
-        ],
-      }
+      paginatorDto
     );
   }
 
