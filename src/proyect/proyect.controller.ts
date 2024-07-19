@@ -4,8 +4,6 @@ import { CreateProyectDto } from './dto/create-proyect.dto';
 import { UpdateProyectDto } from './dto/update-proyect.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { ValidRoles } from '../auth/interfaces/valid-roles';
-import { PaginationResult } from '../common/interfaces/pagination-result.interface';
-import { Proyect } from './entities/proyect.entity';
 import { PaginatorProyectDto } from './dto/paginator-proyect.dto';
 
 @Controller('proyect')
@@ -20,7 +18,7 @@ export class ProyectController {
 
   @Get()
   @Auth(ValidRoles.admin)
-  findAll(@Query() PaginatorDto: PaginatorProyectDto): Promise<PaginationResult<Proyect>> {
+  findAll(@Query() PaginatorDto: PaginatorProyectDto) {
     return this.proyectService.findAll(PaginatorDto);
   }
 

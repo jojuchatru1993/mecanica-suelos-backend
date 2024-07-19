@@ -5,8 +5,6 @@ import { UpdateResistanceTypeDto } from './dto/update-resistance-type.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { ValidRoles } from '../auth/interfaces/valid-roles';
 import { PaginatorResistanceTypeDto } from './dto/paginator-resistance-type.dto';
-import { PaginationResult } from '../common/interfaces/pagination-result.interface';
-import { ResistanceType } from './entities/resistance-type.entity';
 
 @Controller('resistance-type')
 export class ResistanceTypeController {
@@ -20,7 +18,7 @@ export class ResistanceTypeController {
 
   @Get()
   @Auth(ValidRoles.admin)
-  findAll(@Query() paginatorDto: PaginatorResistanceTypeDto): Promise<PaginationResult<ResistanceType>> {
+  findAll(@Query() paginatorDto: PaginatorResistanceTypeDto) {
     return this.resistanceTypeService.findAll(paginatorDto);
   }
 

@@ -4,8 +4,6 @@ import { CreateDocumentTypeDto } from './dto/create-document-type.dto';
 import { UpdateDocumentTypeDto } from './dto/update-document-type.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { ValidRoles } from '../auth/interfaces/valid-roles';
-import { PaginationResult } from '../common/interfaces/pagination-result.interface';
-import { DocumentType } from './entities/document-type.entity';
 import { PaginatorDocumentTypeDto } from './dto/paginator-document-type.dto';
 
 @Controller('document-type')
@@ -20,7 +18,7 @@ export class DocumentTypeController {
 
   @Get()
   @Auth()
-  findAll(@Query() paginatorDto: PaginatorDocumentTypeDto): Promise<PaginationResult<DocumentType>> {
+  findAll(@Query() paginatorDto: PaginatorDocumentTypeDto) {
     return this.documentTypeService.findAll(paginatorDto);
   }
 
