@@ -8,6 +8,7 @@ import { ClientModule } from './client/client.module';
 import { ProyectModule } from './proyect/proyect.module';
 import { ResistanceTypeModule } from './resistance-type/resistance-type.module';
 import { AggregateTypeModule } from './aggregate-type/aggregate-type.module';
+import { StandardModule } from './standard/standard.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { AggregateTypeModule } from './aggregate-type/aggregate-type.module';
     ProyectModule,
     ResistanceTypeModule,
     AggregateTypeModule,
+    StandardModule,
   ],
   controllers: [],
   providers: [],
