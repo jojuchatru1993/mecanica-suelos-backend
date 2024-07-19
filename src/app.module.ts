@@ -7,6 +7,7 @@ import { CommonModule } from './common/common.module';
 import { ClientModule } from './client/client.module';
 import { ProyectModule } from './proyect/proyect.module';
 import { ResistanceTypeModule } from './resistance-type/resistance-type.module';
+import { AggregateTypeModule } from './aggregate-type/aggregate-type.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ResistanceTypeModule } from './resistance-type/resistance-type.module';
     ClientModule,
     ProyectModule,
     ResistanceTypeModule,
+    AggregateTypeModule,
   ],
   controllers: [],
   providers: [],
